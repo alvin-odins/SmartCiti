@@ -6,7 +6,22 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<link rel="stylesheet" href="assets/css/materialize.css" />
-		<script type="text/javascript" src="assets/js/main.js"></script> 
+		<script type="text/javascript" src="assets/js/main.js"></script>
+		<style>
+#myProgress {
+  position: relative;
+  width: 100%;
+  height: 30px;
+  background-color: #ddd;
+}
+
+#myBar {
+  position: absolute;
+  width: 1%;
+  height: 100%;
+  background-color: #4CAF50;
+}
+</style>
 </head>
 	<body>
 <header id="header" class="alt">
@@ -21,13 +36,23 @@
 		<div class="col s12 m4 l8">
 			<blockquote>Please refresh page to view current progress...</blockquote>
 		
-  <div class="progress">
-      <div class="determinate" style="width: 10%"></div>
-  </div>
-  <a class="waves-effect waves-light btn">Refresh</a>
+  <!--<div class="progress">
+      <div id="determinate" style="width: 10%"></div>
+  </div>-->
+
+  <div id="myProgress">
+	  <div id="myBar"></div>
+	</div>
+
+  <a class="waves-effect waves-light btn" onclick="progress()">Refresh</a>
   </div>
   <div class="col s12 m4 l2"></div>
 	</div>
+
+	
+
+	<!--<br>
+	<button onclick="progress()">Click Me</button>-->
 	
 
 				<!-- Footer -->
@@ -41,5 +66,22 @@
 						</ul>
 						<p class="copyright">&copy; Untitled. Design: <a href="https://templated.co">TEMPLATED</a>. Images: <a href="https://unsplash.com">Unsplash</a>.</p>
 					</footer>
+
+					<!-- scripts -->
+					<script>
+						function progress() {
+							var targetElem = document.getElementById("myBar");
+							var width = 1;
+							var id = setInterval(frame, 1000);
+							function frame(){
+								if (width >= 100) {
+									clearInterval(id);
+								} else {
+									width++;
+									targetElem.style.width = width + '%';
+								}
+							}
+						}
+					</script>
 	</body>
 </html>
